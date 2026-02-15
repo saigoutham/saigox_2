@@ -58,17 +58,18 @@ const Signal = () => {
                         href="https://fat-fingers.vercel.app"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="signal__side-project glass-card"
+                        className="signal__side-project glass-card side-project--large"
                     >
                         <div className="side-project__visual">
                             <img src="/images/fat-fingers.png" alt="Fat Fingers Project Screenshot" className="side-project__screenshot" />
                             <div className="side-project__overlay">
-                                <Rocket size={16} />
+                                <Rocket size={24} />
+                                <span className="overlay-text">VIEW PROJECT</span>
                             </div>
                         </div>
                         <div className="side-project__content">
-                            <div className="side-project__label">SIDE PROJECT</div>
-                            <div className="side-project__name">Fat Fingers</div>
+                            <div className="side-project__label">FEATURED SIDE PROJECT</div>
+                            <div className="side-project__name">Fat Fingers — Audio Visual Experience</div>
                         </div>
                     </a>
                 </div>
