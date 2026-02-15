@@ -33,37 +33,49 @@ const Signal = () => {
         <section ref={sectionRef} className="scene signal" id="signal">
             <span className="label-tag signal-reveal">Contact</span>
 
-            <h2
-                className="display-heading display-heading--lg signal__heading signal-reveal"
-                style={{ marginTop: '16px' }}
-            >
-                Let's build<br />
-                <span className="accent-text">something</span>
+            <div className="signal__header-split signal-reveal">
+                <div className="signal__header-left">
+                    <h2 className="display-heading display-heading--lg signal__heading">
+                        Let's build<br />
+                        <span className="accent-text">something</span>
+                    </h2>
+                    <p className="signal__sub">
+                        Open to product leadership roles, consulting, and creative collaborations.
+                    </p>
 
-                <a
-                    href="https://fat-fingers.vercel.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="signal__side-project glass-card"
-                >
-                    <div className="side-project__visual">
-                        <img src="/images/fat-fingers.png" alt="Fat Fingers Project Screenshot" className="side-project__screenshot" />
-                        <div className="side-project__overlay">
-                            <Rocket size={16} />
+                    <a
+                        href="/Goutham_Vaddi_Resume.pdf"
+                        download
+                        className="signal__resume-btn glass-card"
+                    >
+                        <Rocket size={16} />
+                        <span>Download Resume</span>
+                    </a>
+                </div>
+
+                <div className="signal__header-right">
+                    <a
+                        href="https://fat-fingers.vercel.app"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="signal__side-project glass-card"
+                    >
+                        <div className="side-project__visual">
+                            <img src="/images/fat-fingers.png" alt="Fat Fingers Project Screenshot" className="side-project__screenshot" />
+                            <div className="side-project__overlay">
+                                <Rocket size={16} />
+                            </div>
                         </div>
-                    </div>
-                    <div className="side-project__content">
-                        <div className="side-project__label">SIDE PROJECT</div>
-                        <div className="side-project__name">Fat Fingers</div>
-                    </div>
-                </a>
-            </h2>
+                        <div className="side-project__content">
+                            <div className="side-project__label">SIDE PROJECT</div>
+                            <div className="side-project__name">Fat Fingers</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
             <div className="signal__grid">
                 <div className="signal__info">
-                    <p className="signal__sub signal-reveal">
-                        Open to product leadership roles, consulting, and creative collaborations.
-                    </p>
 
                     <div className="signal__links signal-reveal">
                         <a

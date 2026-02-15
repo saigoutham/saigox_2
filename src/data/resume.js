@@ -166,13 +166,6 @@ export const skillCategories = [
             'Tableau', 'SQL',
         ],
     },
-    {
-        category: 'Technical',
-        skills: [
-            'Python', 'React', 'JavaScript', 'Spark', 'Hadoop',
-            'Data Pipelines', 'DevOps',
-        ],
-    },
 ]
 
 export const skills = [

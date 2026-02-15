@@ -104,8 +104,9 @@
 .arsenal__skills-layout {
     display: grid;
     grid-template-columns: 1fr 340px;
-    gap: clamp(20px, 3vw, 40px);
+    gap: clamp(30px, 4vw, 60px);
     align-items: start;
+    margin-top: 20px;
 }
 
 .arsenal__skills-cats {

@@ -70,9 +70,12 @@ const RadarChart = ({ stats }) => {
                         <animate attributeName="opacity" values="0.3;0;0.3" dur="3s" repeatCount="indefinite" begin={`${i * 0.4}s`} />
                     </circle>
                     <text
-                        x={cx + (maxR + 22) * Math.cos(p.angle)}
-                        y={cy + (maxR + 22) * Math.sin(p.angle)}
-                        fill="rgba(255,255,255,0.5)" fontSize="8" fontFamily="var(--font-mono)"
+                        x={cx + (maxR + 25) * Math.cos(p.angle)}
+                        y={cy + (maxR + 25) * Math.sin(p.angle)}
+                        fill="var(--text-secondary)"
+                        fontSize="10"
+                        fontWeight="600"
+                        fontFamily="var(--font-mono)"
                         textAnchor={p.angle > Math.PI / 2 || p.angle < -Math.PI / 2 ? 'end' : 'start'}
                         dominantBaseline="middle"
                     >{p.stat.axis}</text>
