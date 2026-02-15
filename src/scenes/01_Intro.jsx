@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import '../styles/Intro.css'
+import CountUp from '../components/CountUp'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -131,12 +133,35 @@ const Intro = () => {
             rotateX: 0,
             scale: 1,
             transition: {
-                delay: 3.0 + i * 0.12,
+                delay: 0.5 + i * 0.12,
                 duration: 1.2,
                 ease: [0.16, 1, 0.3, 1],
             },
         }),
     }
+
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            const { clientX, clientY } = e
+            const { innerWidth, innerHeight } = window
+
+            // Calculate rotation values (-10 to 10 degrees)
+            const xRotation = ((clientY / innerHeight) - 0.5) * 20
+            const yRotation = ((clientX / innerWidth) - 0.5) * -20
+
+            // Apply tilt to name block
+            gsap.to(nameRef.current, {
+                rotateX: xRotation,
+                rotateY: yRotation,
+                duration: 0.8,
+                ease: 'power2.out',
+                overwrite: true
+            })
+        }
+
+        window.addEventListener('mousemove', handleMouseMove)
+        return () => window.removeEventListener('mousemove', handleMouseMove)
+    }, [])
 
     return (
         <section ref={sectionRef} className="scene intro" id="intro">
@@ -154,7 +179,7 @@ const Intro = () => {
                     className="intro__scanner"
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
-                    transition={{ delay: 2.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 />
 
                 <span className="intro__first-name" aria-label={firstName}>
@@ -178,7 +203,7 @@ const Intro = () => {
                     className="intro__last-name"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 4.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ delay: 1.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
                 >
                     VADDI
                 </motion.span>
@@ -188,7 +213,7 @@ const Intro = () => {
                     className="intro__roles"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 4.8, duration: 0.8 }}
+                    transition={{ delay: 2.0, duration: 0.8 }}
                 >
                     <span className="intro__role-pill intro__role-pill--accent">
                         <span className="intro__role-dot" /> Product Manager
@@ -208,20 +233,26 @@ const Intro = () => {
                     className="intro__stat-bar"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 5.2, duration: 0.8 }}
+                    transition={{ delay: 2.2, duration: 0.8 }}
                 >
                     <div className="intro__stat-item">
-                        <span className="intro__stat-val">$80M+</span>
+                        <span className="intro__stat-val">
+                            <CountUp value="80" prefix="$" suffix="M+" />
+                        </span>
                         <span className="intro__stat-lbl">REVENUE OWNED</span>
                     </div>
                     <div className="intro__stat-sep" />
                     <div className="intro__stat-item">
-                        <span className="intro__stat-val">100M+</span>
+                        <span className="intro__stat-val">
+                            <CountUp value="100" suffix="M+" />
+                        </span>
                         <span className="intro__stat-lbl">TRANSACTIONS</span>
                     </div>
                     <div className="intro__stat-sep" />
                     <div className="intro__stat-item">
-                        <span className="intro__stat-val">4.5 YRS</span>
+                        <span className="intro__stat-val">
+                            <CountUp value="4.5" suffix=" YRS" />
+                        </span>
                         <span className="intro__stat-lbl">EXPERIENCE</span>
                     </div>
                 </motion.div>
@@ -232,7 +263,7 @@ const Intro = () => {
                 className="intro__scroll-indicator"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 6, duration: 1 }}
+                transition={{ delay: 3.0, duration: 1 }}
             >
                 <span className="intro__scroll-text">SCROLL</span>
                 <span className="intro__scroll-line" />

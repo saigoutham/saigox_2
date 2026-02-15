@@ -6,6 +6,9 @@ import Lenis from 'lenis'
 
 import Navbar from './scenes/Navbar'
 import Preloader from './scenes/Preloader'
+import CustomCursor from './components/CustomCursor'
+import ResumeFab from './components/ResumeFab'
+import SectionProgress from './components/SectionProgress'
 import Intro from './scenes/01_Intro'
 import Identity from './scenes/02_Identity'
 import Arsenal from './scenes/03_Arsenal'
@@ -13,9 +16,11 @@ import Campaigns from './scenes/04_Campaigns'
 import Credentials from './scenes/04b_Credentials'
 import Gallery from './scenes/05_Gallery'
 import Signal from './scenes/06_Signal'
+import CaseStudies from './scenes/07_CaseStudies'
+import Testimonials from './scenes/08_Testimonials'
 
 import './design/tokens.css'
-import './App.css'
+import './styles/main.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -55,6 +60,9 @@ const App = () => {
             <div className="noise-overlay" />
 
             {ready && <Navbar />}
+            {ready && <CustomCursor />}
+            {ready && <ResumeFab />}
+            {ready && <SectionProgress />}
 
             <main className={`main ${ready ? 'main--ready' : ''}`}>
                 <Intro />
@@ -68,6 +76,10 @@ const App = () => {
                 <Credentials />
                 <SectionDivider />
                 <Gallery />
+                <SectionDivider />
+                <CaseStudies />
+                <SectionDivider />
+                <Testimonials />
                 <SectionDivider />
                 <Signal />
             </main>

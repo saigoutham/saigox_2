@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, useMemo } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import '../styles/Gallery.css'
 import { Camera, X, ChevronLeft, ChevronRight, Aperture } from 'lucide-react'
 import { photography } from '../data/imageManifest'
 

@@ -1,0 +1,190 @@
+/* ═══════════════════════════════════════════════════════════
+   SCENE 06: SIGNAL (CONTACT)
+   ═══════════════════════════════════════════════════════════ */
+.signal {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: clamp(80px, 12vh, 140px) clamp(24px, 5vw, 80px);
+    position: relative;
+    max-width: var(--container);
+    margin: 0 auto;
+}
+
+.signal__heading {
+    text-align: left;
+    width: 100%;
+    margin-bottom: clamp(40px, 6vh, 80px);
+}
+
+.signal__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: clamp(40px, 6vw, 100px);
+    width: 100%;
+    align-items: start;
+}
+
+.signal__info {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    text-align: left;
+}
+
+.signal__sub {
+    font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+    color: var(--text-secondary);
+    line-height: 1.5;
+    max-width: 500px;
+}
+
+.signal__links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.signal__link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+}
+
+.signal__link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(255, 107, 53, 0.05);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.08);
+}
+
+.signal__link svg {
+    width: 16px;
+    height: 16px;
+}
+
+.signal__form {
+    padding: clamp(24px, 3vw, 48px);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.form-group input,
+.form-group textarea {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 14px 18px;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--accent);
+    background: rgba(255, 107, 53, 0.02);
+    outline: none;
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.05);
+}
+
+.signal__form-submit {
+    margin-top: 10px;
+    padding: 16px;
+    background: var(--accent);
+    color: var(--void);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.signal__form-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+    filter: brightness(1.1);
+}
+
+.form-note {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    color: var(--text-dim);
+    text-align: center;
+    margin-top: -8px;
+}
+
+@media (max-width: 900px) {
+    .signal__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .signal__heading {
+        text-align: center;
+    }
+
+    .signal__info {
+        text-align: center;
+        align-items: center;
+    }
+
+    .signal__links {
+        justify-content: center;
+    }
+}
+
+.signal__footer {
+    margin-top: clamp(80px, 15vh, 160px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.signal__footer-line {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+}
+
+.signal__footer-text {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 4px;
+    color: var(--text-dim);
+}

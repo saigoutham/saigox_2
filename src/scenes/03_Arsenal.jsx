@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import '../styles/Arsenal.css'
 import {
     Target, BarChart3, Code2, Gamepad2, Brain,
     Layers, Zap, Rocket, Users, PieChart,
@@ -8,6 +9,7 @@ import {
     DollarSign, CreditCard
 } from 'lucide-react'
 import { skillCategories, characterStats } from '../data/resume'
+import CountUp from '../components/CountUp'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -117,12 +119,18 @@ const Arsenal = () => {
                 <div className="arsenal__metrics-grid">
                     {impactMetrics.map((m, i) => {
                         const Icon = m.icon
+                        // Extract prefix/suffix from the value string
+                        const prefix = m.value.startsWith('$') ? '$' : m.value.startsWith('₹') ? '₹' : ''
+                        const suffix = m.value.replace(/[\d.$₹]/g, '')
+
                         return (
                             <div key={i} className="metric-tile glass-card" style={{ '--tile-accent': m.color }}>
                                 <div className="metric-tile__icon">
                                     <Icon size={24} strokeWidth={1.5} />
                                 </div>
-                                <span className="metric-tile__value">{m.value}</span>
+                                <span className="metric-tile__value">
+                                    <CountUp value={m.value} prefix={prefix} suffix={suffix} delay={i * 0.1} />
+                                </span>
                                 <span className="metric-tile__label">{m.label}</span>
                                 <div className="metric-tile__glow" />
                             </div>

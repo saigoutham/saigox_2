@@ -1,0 +1,191 @@
+/* ═══════════════════════════════════════════════════════════
+   SCENE 03: ARSENAL — INFOGRAPHIC TILES + SKILL CHIPS
+   ═══════════════════════════════════════════════════════════ */
+.arsenal {
+    padding: clamp(80px, 12vh, 140px) clamp(40px, 5vw, 80px);
+}
+
+.arsenal__inner {
+    max-width: var(--container);
+    margin: 0 auto;
+}
+
+.arsenal__header {
+    margin-bottom: clamp(50px, 8vh, 80px);
+}
+
+.arsenal__metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: clamp(50px, 8vh, 80px);
+}
+
+.metric-tile {
+    padding: clamp(24px, 2.5vw, 36px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.metric-tile__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--tile-accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--tile-accent) 20%, transparent);
+    color: var(--tile-accent);
+    margin-bottom: 16px;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.metric-tile:hover .metric-tile__icon {
+    transform: scale(1.15) rotate(-8deg);
+    box-shadow: 0 0 30px color-mix(in srgb, var(--tile-accent) 25%, transparent);
+}
+
+.metric-tile__value {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 4px;
+    background: linear-gradient(180deg, var(--text) 0%, var(--tile-accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.metric-tile__label {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 3px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+}
+
+.metric-tile__glow {
+    position: absolute;
+    bottom: -60%;
+    right: -30%;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--tile-accent) 8%, transparent) 0%, transparent 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.metric-tile:hover .metric-tile__glow {
+    opacity: 1;
+}
+
+@media (max-width: 900px) {
+    .arsenal__metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .arsenal__metrics-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+}
+
+.arsenal__skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: clamp(20px, 3vw, 40px);
+    align-items: start;
+}
+
+.arsenal__skills-cats {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.skill-category {
+    padding: clamp(24px, 2.5vw, 32px);
+}
+
+.skill-category__title {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.skill-category__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.02);
+    cursor: default;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.skill-chip:hover {
+    border-color: rgba(255, 107, 53, 0.4);
+    color: var(--accent);
+    background: rgba(255, 107, 53, 0.06);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.08);
+}
+
+.skill-chip svg {
+    opacity: 0.4;
+    transition: opacity 0.3s;
+}
+
+.skill-chip:hover svg {
+    opacity: 1;
+}
+
+.arsenal__radar-wrap {
+    padding: clamp(24px, 2.5vw, 32px);
+    position: sticky;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.radar-svg {
+    width: 100%;
+    max-width: 260px;
+}
+
+@media (max-width: 900px) {
+    .arsenal__skills-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .arsenal__radar-wrap {
+        position: static;
+    }
+}

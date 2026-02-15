@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { GraduationCap, Trophy } from 'lucide-react'
+import '../styles/Credentials.css'
+import { GraduationCap, Trophy, Zap, Briefcase, Target, BarChart3, Award } from 'lucide-react'
 import { education, awards } from '../data/resume'
+import CountUp from '../components/CountUp'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -45,7 +47,13 @@ const Credentials = () => {
                     {education.map((edu, i) => (
                         <div key={i} className="edu-card glass-card" style={{ '--card-accent': edu.accent }}>
                             {/* Hero badge — the main visual */}
-                            <div className="edu-card__hero-badge">{edu.badge}</div>
+                            <div className="edu-card__hero-badge">
+                                <CountUp
+                                    value={edu.badge}
+                                    prefix={edu.badge.includes('₹') ? '₹' : ''}
+                                    suffix={edu.badge.replace(/[\d.₹]/g, '')}
+                                />
+                            </div>
 
                             <h3 className="edu-card__school">{edu.school}</h3>
                             <p className="edu-card__degree">{edu.degree}</p>
@@ -72,17 +80,32 @@ const Credentials = () => {
                 </div>
 
                 <div className="credentials__awards-grid">
-                    {awards.map((award, i) => (
-                        <div key={i} className="award-tile glass-card">
-                            <span className="award-tile__icon">{award.icon}</span>
-                            <h4 className="award-tile__title">{award.title}</h4>
-                            <span className="award-tile__org">{award.org}</span>
-                            {/* Detail on hover */}
-                            <div className="award-tile__detail-overlay">
-                                <p>{award.detail}</p>
+                    {awards.map((award, i) => {
+                        const IconMap = {
+                            '🏆': Trophy,
+                            '⚡': Zap,
+                            '💼': Briefcase,
+                            '🎯': Target,
+                            '📊': BarChart3,
+                            '🎓': GraduationCap,
+                            '🎖️': Award
+                        }
+                        const Icon = IconMap[award.icon] || Award
+
+                        return (
+                            <div key={i} className="award-tile glass-card">
+                                <span className="award-tile__icon">
+                                    <Icon size={24} strokeWidth={1.5} />
+                                </span>
+                                <h4 className="award-tile__title">{award.title}</h4>
+                                <span className="award-tile__org">{award.org}</span>
+                                {/* Detail on hover */}
+                                <div className="award-tile__detail-overlay">
+                                    <p>{award.detail}</p>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        )
+                    })}
                 </div>
             </div>
         </section>

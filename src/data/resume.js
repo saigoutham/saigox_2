@@ -11,7 +11,7 @@ export const identity = {
     tagline: 'Data-driven Monetization Architect & Photographer',
     summary: 'Product Manager with 4.5 years of experience, including 2.5+ years in mobile social and casino gaming. Previously worked as a Data Engineer, bringing analytical depth to product decision-making. Owned monetization strategy, LiveOps sales, and player segmentation for a game generating $80M+ annually, significantly improving ARPDAU, ARPPU, and conversion.',
     email: 'saigoutham.vaddi@gmail.com',
-    phone: '+91 949 414 0609',
+    phone: '+91 9494140609',
     linkedin: 'https://linkedin.com/in/saigouthamvaddi/',
     location: 'Bangalore, India',
 }
@@ -33,14 +33,14 @@ export const experiences = [
         ],
         metrics: [
             { val: '1PB+', label: 'DATA PROCESSED' },
-            { val: '100M+', label: 'DAILY TXN' },
+            { val: '100M+', label: 'TRANSACTIONS' },
             { val: '2×', label: 'EMPLOYEE OF YEAR' },
         ],
     },
     {
         id: 'hellmark',
         company: 'Hel(l)Mark',
-        role: 'Chief Executive Officer — The IIML Store',
+        role: 'Chief Executive Officer',
         period: 'MAY 2022 — APR 2023',
         location: 'IIM Lucknow',
         badge: 'FOUNDER',
@@ -87,7 +87,7 @@ export const experiences = [
         highlights: [
             'Own end-to-end monetization for live mobile titles generating $80M+ annually.',
             'Drive revenue strategy across IAP, D2C web stores, and LiveOps events.',
-            'Lead cross-functional squad of 12+ across engineering, design, and data science.',
+            'Drive revenue strategy across IAP, D2C web stores, and LiveOps events.',
         ],
         metrics: [
             { val: '$80M+', label: 'ANNUAL REVENUE' },
@@ -110,7 +110,7 @@ export const education = [
             "Dean's Merit List",
             'National Finalist — Microsoft PM Engage',
             'National Finalist — XLRI Case Competitions',
-            'Co-founded Hel(l)Mark during MBA tenure',
+            'Won operational bid to run IIML\'s official merchandise store',
         ],
     },
     {
@@ -146,7 +146,6 @@ export const awards = [
     { title: 'Visa Intern → PPO', org: 'Visa Inc.', detail: 'Pre-placement offer after internship; recognized for top performance', icon: '💼' },
     { title: 'Deloitte USI Intern', org: 'Deloitte', detail: 'Consulting intern; recognized for top performance', icon: '💼' },
     { title: 'JEE Main AIR 995', org: 'National', detail: '99.66 Percentile out of 12.34L+ candidates', icon: '🎯' },
-    { title: 'CAT 99.22 Percentile', org: 'National', detail: 'Top 0.78% of 200K+ candidates', icon: '📊' },
     { title: "Dean's Merit List", org: 'IIM Lucknow', detail: 'Top academic cohort in MBA program', icon: '🎓' },
     { title: 'National Case Finalist', org: 'Microsoft PM Engage, XLRI', detail: 'Multiple national-level case competition finals', icon: '🎖️' },
 ]
@@ -194,45 +193,3 @@ export const characterStats = [
     { axis: 'Creativity', value: 78, basis: 'Photography, game design' },
 ]
 
-// ───────────────── OLD EXPORTS (compatibility) ─────────────────
-export const actI = {
-    title: 'The Foundation',
-    subtitle: 'The Architect Awakens',
-    relics: [
-        { id: 'pipeline', icon: '⚡', metric: '1PB+', label: 'Data Pipelines', context: 'Enterprise-scale ETL on Hadoop/Spark at Visa', element: 'electro' },
-        { id: 'transactions', icon: '💳', metric: '100M+', label: 'Daily Transactions', context: 'Core payment processing infrastructure', element: 'electro' },
-        { id: 'devops', icon: '🔧', metric: '100+', label: 'DevOps Deployments', context: 'Automated CI/CD pipelines', element: 'electro' },
-        { id: 'datasources', icon: '🌐', metric: '30+', label: 'Global Data Sources', context: 'Cross-region data validation and integration', element: 'electro' },
-        { id: 'qa', icon: '🛡️', metric: '480+', label: 'QA Hours Saved', context: 'Test automation and quality engineering', element: 'electro' },
-        { id: 'eoty', icon: '🏆', metric: '×2', label: 'Employee of the Year', context: 'Recognized for Judgment, Ownership & Execution', element: 'geo' },
-    ],
-}
-
-export const actII = {
-    title: 'The Strategist',
-    subtitle: 'LiveOps Citadel',
-    skillTree: {
-        center: { label: 'PRODUCT MANAGER', sub: 'SCOPELY', metric: '$80M+ Annual Revenue' },
-        branches: [],
-    },
-    abTests: [],
-}
-
-export const operatorStats = {
-    revenue: '₹20L+',
-    yoyGrowth: '94%',
-    productsLaunched: '35+',
-    teamSize: 7,
-    ordersDelivered: '2K+',
-}
-
-export const loot = [
-    { icon: '🏆', title: 'Employee of the Year', sub: 'VISA INC. — 2020 & 2021', desc: 'Twice recognized across entire org for Judgment, Ownership & Execution excellence.', rarity: 'SSR', stars: 5 },
-    { icon: '💰', title: '$80M+ Revenue Owner', sub: 'SCOPELY', desc: 'Direct P&L ownership of live mobile gaming monetization.', rarity: 'SSR', stars: 5 },
-    { icon: '📊', title: 'CAT 99.22 Percentile', sub: 'TOP 0.78% OF 200K+', desc: 'Among top 0.78% of 200K+ candidates nationally.', rarity: 'SSR', stars: 5 },
-    { icon: '⚡', title: '5× Spot Awards', sub: 'SCOPELY — 2023–2025', desc: 'Exceptional cross-functional impact.', rarity: 'SR', stars: 4 },
-    { icon: '🎓', title: "Dean's Merit — MBA", sub: 'IIM LUCKNOW', desc: 'Top academic cohort. National Case Finalist.', rarity: 'SR', stars: 4 },
-    { icon: '🎮', title: 'Google Play Featured', sub: 'HEL(L)MARK', desc: 'Top 20 Google Play Games.', rarity: 'SR', stars: 4 },
-    { icon: '🎓', title: 'B.Tech CS (Honors)', sub: 'NIT TRICHY — 9.27 CGPA', desc: 'Major: CS, Minor: Management.', rarity: 'R', stars: 3 },
-    { icon: '📸', title: 'Wildlife Photographer', sub: 'NIKON × INDIAN PARKS', desc: 'Multi-genre photographer.', rarity: 'R', stars: 3 },
-]

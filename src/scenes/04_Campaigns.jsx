@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import gsap from 'gsap'
+import CountUp from '../components/CountUp'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import {
     Briefcase, Calendar, ChevronDown, ChevronUp,
@@ -8,6 +10,7 @@ import {
     Rocket, ShoppingBag, Package, Zap
 } from 'lucide-react'
 import { experiences } from '../data/resume'
+import '../styles/Campaigns.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -139,7 +142,13 @@ const CampaignCard = ({ exp, index }) => {
                 </div>
                 {/* Big accent number — the hero metric */}
                 <div className="campaign-card__hero-metric">
-                    <span className="campaign-card__hero-value">{exp.metrics[0]?.val}</span>
+                    <span className="campaign-card__hero-value">
+                        <CountUp
+                            value={exp.metrics[0]?.val}
+                            prefix={exp.metrics[0]?.val.startsWith('$') ? '$' : exp.metrics[0]?.val.startsWith('₹') ? '₹' : ''}
+                            suffix={exp.metrics[0]?.val.replace(/[\d.$₹]/g, '')}
+                        />
+                    </span>
                     <span className="campaign-card__hero-label">{exp.metrics[0]?.label}</span>
                 </div>
             </div>
@@ -155,7 +164,13 @@ const CampaignCard = ({ exp, index }) => {
                                 {config.type === 'donut' ? (
                                     <div className="campaign-infographic__donut-wrap">
                                         <DonutRing percent={config.percent} color={config.color} size={72} />
-                                        <span className="campaign-infographic__donut-value">{m.val}</span>
+                                        <span className="campaign-infographic__donut-value">
+                                            <CountUp
+                                                value={m.val}
+                                                prefix={m.val.startsWith('$') ? '$' : m.val.startsWith('₹') ? '₹' : ''}
+                                                suffix={m.val.replace(/[\d.$₹]/g, '')}
+                                            />
+                                        </span>
                                     </div>
                                 ) : (
                                     <div className="campaign-infographic__icon-wrap" style={{ '--metric-color': config.color }}>
@@ -164,7 +179,13 @@ const CampaignCard = ({ exp, index }) => {
                                 )}
                             </div>
                             {config.type !== 'donut' && (
-                                <span className="campaign-infographic__value">{m.val}</span>
+                                <span className="campaign-infographic__value">
+                                    <CountUp
+                                        value={m.val}
+                                        prefix={m.val.startsWith('$') ? '$' : m.val.startsWith('₹') ? '₹' : ''}
+                                        suffix={m.val.replace(/[\d.$₹]/g, '')}
+                                    />
+                                </span>
                             )}
                             <span className="campaign-infographic__label">{m.label}</span>
                         </div>
@@ -172,8 +193,8 @@ const CampaignCard = ({ exp, index }) => {
                 })}
             </div>
 
-            {/* ── Key highlights strip (always visible summary) ── */}
-            {exp.highlights && (
+            {/* ── Key highlights strip (visible only when collapsed or for hero items) ── */}
+            {exp.highlights && !expanded && (
                 <div className="campaign-card__highlights-strip">
                     {exp.highlights.slice(0, 3).map((h, i) => (
                         <div key={i} className="campaign-highlight">
@@ -185,29 +206,43 @@ const CampaignCard = ({ exp, index }) => {
             )}
 
             {/* ── Expandable details ── */}
-            <button className="campaign-card__expand" onClick={() => setExpanded(!expanded)}>
+            <button
+                className="campaign-card__expand"
+                onClick={() => setExpanded(!expanded)}
+                aria-expanded={expanded}
+                aria-label={expanded ? 'Hide project details' : 'View project details'}
+            >
                 <span>{expanded ? 'Hide details' : 'View details'}</span>
                 {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
             </button>
 
-            {expanded && (
-                <div className="campaign-card__details">
-                    {exp.sections ? (
-                        exp.sections.map((section, si) => (
-                            <div key={si} className="campaign-card__section">
-                                <h4 className="campaign-card__section-title">{section.title}</h4>
-                                <ul className="campaign-card__bullets">
-                                    {section.bullets.map((b, j) => <li key={j}>{b}</li>)}
-                                </ul>
-                            </div>
-                        ))
-                    ) : (
-                        <ul className="campaign-card__bullets">
-                            {exp.highlights.map((b, j) => <li key={j}>{b}</li>)}
-                        </ul>
-                    )}
-                </div>
-            )}
+            <AnimatePresence>
+                {expanded && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        className="campaign-card__details"
+                        style={{ overflow: 'hidden' }}
+                    >
+                        {exp.sections ? (
+                            exp.sections.map((section, si) => (
+                                <div key={si} className="campaign-card__section" style={{ paddingBottom: '16px' }}>
+                                    <h4 className="campaign-card__section-title">{section.title}</h4>
+                                    <ul className="campaign-card__bullets">
+                                        {section.bullets.map((b, j) => <li key={j}>{b}</li>)}
+                                    </ul>
+                                </div>
+                            ))
+                        ) : (
+                            <ul className="campaign-card__bullets">
+                                {exp.highlights.map((b, j) => <li key={j}>{b}</li>)}
+                            </ul>
+                        )}
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             {/* Ambient glow */}
             <div className="campaign-card__glow" />
@@ -220,13 +255,37 @@ const Campaigns = () => {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
+            // Timeline progress animation
+            gsap.to('.campaigns__timeline-progress', {
+                height: '100%',
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '.campaigns__timeline-container',
+                    start: 'top 70%',
+                    end: 'bottom 70%',
+                    scrub: true
+                }
+            })
+
             const cards = sectionRef.current.querySelectorAll('.campaign-card')
             cards.forEach((card, i) => {
                 gsap.fromTo(card,
-                    { y: 80, scale: 0.97 },
+                    { x: 50, opacity: 0 },
                     {
-                        y: 0, scale: 1, duration: 1, ease: 'power3.out',
+                        x: 0, opacity: 1, duration: 1, ease: 'power3.out',
                         scrollTrigger: { trigger: card, start: 'top 88%' }
+                    }
+                )
+            })
+
+            // Dot animations
+            const dots = sectionRef.current.querySelectorAll('.campaign-timeline-dot')
+            dots.forEach((dot, i) => {
+                gsap.fromTo(dot,
+                    { scale: 0, opacity: 0 },
+                    {
+                        scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(2)',
+                        scrollTrigger: { trigger: dot, start: 'top 80%' }
                     }
                 )
             })
@@ -250,10 +309,22 @@ const Campaigns = () => {
                     </p>
                 </div>
 
-                <div className="campaigns__cards">
-                    {sorted.map((exp, i) => (
-                        <CampaignCard key={exp.id} exp={exp} index={i} />
-                    ))}
+                <div className="campaigns__timeline-container">
+                    {/* Vertical line that fills on scroll */}
+                    <div className="campaigns__timeline-line">
+                        <div className="campaigns__timeline-progress" />
+                    </div>
+
+                    <div className="campaigns__cards">
+                        {sorted.map((exp, i) => (
+                            <div key={exp.id} className="campaign-timeline-item">
+                                <div className="campaign-timeline-node">
+                                    <div className="campaign-timeline-dot" style={{ '--node-accent': exp.accent }} />
+                                </div>
+                                <CampaignCard exp={exp} index={i} />
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
