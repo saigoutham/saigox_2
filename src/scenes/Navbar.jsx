@@ -13,8 +13,6 @@ const NAV_ITEMS = [
     { id: 'campaigns', label: 'Career' },
     { id: 'credentials', label: 'Education' },
     { id: 'gallery', label: 'Lens' },
-    { id: 'case-studies', label: 'Missions' },
-    { id: 'testimonials', label: 'Field' },
     { id: 'signal', label: 'Signal' },
 ]
 

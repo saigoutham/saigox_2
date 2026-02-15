@@ -16,8 +16,6 @@ import Campaigns from './scenes/04_Campaigns'
 import Credentials from './scenes/04b_Credentials'
 import Gallery from './scenes/05_Gallery'
 import Signal from './scenes/06_Signal'
-import CaseStudies from './scenes/07_CaseStudies'
-import Testimonials from './scenes/08_Testimonials'
 
 import './design/tokens.css'
 import './styles/main.css'
@@ -76,10 +74,6 @@ const App = () => {
                 <Credentials />
                 <SectionDivider />
                 <Gallery />
-                <SectionDivider />
-                <CaseStudies />
-                <SectionDivider />
-                <Testimonials />
                 <SectionDivider />
                 <Signal />
             </main>

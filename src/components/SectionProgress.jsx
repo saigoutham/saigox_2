@@ -9,10 +9,8 @@ const SECTIONS = [
     { id: 'identity', label: 'About' },
     { id: 'arsenal', label: 'Skills' },
     { id: 'campaigns', label: 'Career' },
-    { id: 'credentials', label: 'Exp' },
+    { id: 'credentials', label: 'Education' },
     { id: 'gallery', label: 'Lens' },
-    { id: 'case-studies', label: 'Ops' },
-    { id: 'testimonials', label: 'Intel' },
     { id: 'signal', label: 'Signal' },
 ]
 

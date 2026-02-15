@@ -104,7 +104,7 @@ export const education = [
         degree: 'MBA — IT Systems, Strategy & Operations',
         school: 'IIM Lucknow',
         period: '2021 — 2023',
-        badge: 'TOP TIER',
+        badge: 'Top 1% Tier',
         accent: '#84CC16',
         highlights: [
             "Dean's Merit List",
@@ -129,7 +129,7 @@ export const education = [
         degree: 'JEE Main (2015)',
         school: 'National Level',
         period: '2015',
-        badge: 'AIR 995',
+        badge: 'JEE Main AIR 995',
         accent: '#FFD700',
         highlights: [
             'AIR 995 / 12.34L+ candidates',

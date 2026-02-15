@@ -206,15 +206,17 @@ const CampaignCard = ({ exp, index }) => {
             )}
 
             {/* ── Expandable details ── */}
-            <button
-                className="campaign-card__expand"
-                onClick={() => setExpanded(!expanded)}
-                aria-expanded={expanded}
-                aria-label={expanded ? 'Hide project details' : 'View project details'}
-            >
-                <span>{expanded ? 'Hide details' : 'View details'}</span>
-                {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-            </button>
+            {exp.sections && (
+                <button
+                    className="campaign-card__expand"
+                    onClick={() => setExpanded(!expanded)}
+                    aria-expanded={expanded}
+                    aria-label={expanded ? 'Hide project details' : 'View project details'}
+                >
+                    <span>{expanded ? 'Hide details' : 'View details'}</span>
+                    {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                </button>
+            )}
 
             <AnimatePresence>
                 {expanded && (

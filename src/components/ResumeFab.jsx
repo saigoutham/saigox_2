@@ -5,7 +5,8 @@ import '../styles/ResumeFab.css'
 const ResumeFab = () => {
     return (
         <a
-            href="/resume.pdf"
+            href="/Vaddi_Sai_Goutham_Product_Manager_Resume.pdf"
+            download="Vaddi_Sai_Goutham_Resume.pdf"
             className="resume-fab"
             target="_blank"
             rel="noopener noreferrer"
