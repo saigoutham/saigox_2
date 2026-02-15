@@ -91,6 +91,35 @@
     border-radius: 10px;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
+    background: var(--card-bg);
+}
+
+.gallery__item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.gallery__item:hover::before {
+    opacity: 1;
+    animation: scan 2s linear infinite;
+}
+
+@keyframes scan {
+    0% {
+        top: 0%;
+    }
+
+    100% {
+        top: 100%;
+    }
 }
 
 .gallery__item:hover {
@@ -169,13 +198,45 @@
 
 .gallery__item-strip {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    opacity: 0;
-    transition: opacity 0.4s;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 80%;
+    border: 1px solid rgba(255, 107, 53, 0.1);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 5;
+    transition: all 0.4s var(--ease-out-expo);
+}
+
+.gallery__item:hover .gallery__item-strip {
+    width: 90%;
+    height: 90%;
+    border-color: rgba(255, 107, 53, 0.3);
+    opacity: 1;
+}
+
+.gallery__item-strip::before,
+.gallery__item-strip::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 2px solid var(--accent);
+}
+
+.gallery__item-strip::before {
+    top: -2px;
+    left: -2px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.gallery__item-strip::after {
+    bottom: -2px;
+    right: -2px;
+    border-left: none;
+    border-top: none;
 }
 
 .gallery__item:hover .gallery__item-strip {
