@@ -46,8 +46,16 @@ const Signal = () => {
                     rel="noopener noreferrer"
                     className="signal__side-project glass-card"
                 >
-                    <div className="side-project__label">SIDE PROJECT</div>
-                    <div className="side-project__name">Fat Fingers <Rocket size={12} className="rocket-icon" /></div>
+                    <div className="side-project__visual">
+                        <img src="/images/fat-fingers.png" alt="Fat Fingers Project Screenshot" className="side-project__screenshot" />
+                        <div className="side-project__overlay">
+                            <Rocket size={16} />
+                        </div>
+                    </div>
+                    <div className="side-project__content">
+                        <div className="side-project__label">SIDE PROJECT</div>
+                        <div className="side-project__name">Fat Fingers</div>
+                    </div>
                 </a>
             </h2>
 
