@@ -117,6 +117,11 @@
 
 .skill-category {
     padding: clamp(24px, 2.5vw, 32px);
+    height: 100%;
+    /* Fill available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .skill-category__title {
@@ -171,22 +176,79 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: clamp(30px, 4vw, 60px);
-    align-items: center;
+    align-items: stretch;
+    /* Stretch to match height */
     margin-top: 20px;
 }
 
+.arsenal__skills-cats {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: space-between;
+    /* Distribute functionality */
+    height: 100%;
+}
+
 .arsenal__radar-wrap {
-    padding: clamp(24px, 2.5vw, 32px);
+    padding: clamp(32px, 4vw, 48px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100%;
+    position: relative;
+    overflow: visible;
+    /* Labels need to breathe */
+}
+
+.radar-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .radar-svg {
-    width: 100%;
-    max-width: 320px;
+    width: 115%;
+    /* Slight boost */
+    max-width: 440px;
+    filter: drop-shadow(0 0 30px rgba(255, 107, 53, 0.05));
+}
+
+.radar-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    background: rgba(132, 204, 22, 0.1);
+    border: 1px solid rgba(132, 204, 22, 0.3);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    justify-content: center;
+    transform: rotate(12deg);
+    box-shadow: 0 0 20px rgba(132, 204, 22, 0.1);
+}
+
+.badge-grade {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #84CC16;
+    line-height: 1;
+}
+
+.badge-label {
+    font-family: var(--font-mono);
+    font-size: 0.45rem;
+    letter-spacing: 1px;
+    color: #84CC16;
+    margin-top: 2px;
+    text-align: center;
 }
 
 @media (max-width: 900px) {

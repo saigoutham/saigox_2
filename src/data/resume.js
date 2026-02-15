@@ -179,9 +179,9 @@ export const skills = [
 export const characterStats = [
     { axis: 'Revenue Ownership', value: 95, basis: '$80M+ P&L ownership' },
     { axis: 'Analytical Depth', value: 90, basis: '1PB+ data pipelines' },
-    { axis: 'Product Intuition', value: 88, basis: '35+ products, PM role' },
+    { axis: 'Product Strategy', value: 88, basis: '35+ products, PM role' },
     { axis: 'Technical Skills', value: 85, basis: 'CS Honors, Spark, Python' },
-    { axis: 'Leadership', value: 82, basis: '7-member team, CEO' },
+    { axis: 'Growth Ownership', value: 82, basis: '7-member team, CEO' },
     { axis: 'Creativity', value: 78, basis: 'Photography, game design' },
 ]
 

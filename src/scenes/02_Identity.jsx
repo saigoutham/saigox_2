@@ -39,6 +39,7 @@ const Identity = () => {
                 scrollTrigger: {
                     trigger: sectionRef.current,
                     start: 'top 65%',
+                    toggleActions: 'play none none reverse'
                 },
             })
         }, sectionRef)

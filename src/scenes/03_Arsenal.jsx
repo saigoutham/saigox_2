@@ -36,7 +36,7 @@ const skillIcons = {
 
 /* ── Radar Chart ── */
 const RadarChart = ({ stats }) => {
-    const cx = 150, cy = 150, maxR = 120
+    const cx = 270, cy = 270, maxR = 160 // Expanded center and radius
     const n = stats.length
     const points = stats.map((s, i) => {
         const angle = (Math.PI * 2 * i) / n - Math.PI / 2
@@ -46,42 +46,66 @@ const RadarChart = ({ stats }) => {
     const gridLevels = [0.25, 0.5, 0.75, 1]
 
     return (
-        <svg viewBox="0 0 300 300" className="radar-svg">
-            {gridLevels.map((lvl) => (
-                <polygon key={lvl}
-                    points={Array.from({ length: n }, (_, i) => {
-                        const a = (Math.PI * 2 * i) / n - Math.PI / 2
-                        return `${cx + maxR * lvl * Math.cos(a)},${cy + maxR * lvl * Math.sin(a)}`
-                    }).join(' ')}
-                    fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-            ))}
-            {points.map((p, i) => (
-                <line key={i} x1={cx} y1={cy}
-                    x2={cx + maxR * Math.cos(p.angle)} y2={cy + maxR * Math.sin(p.angle)}
-                    stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-            ))}
-            <polygon points={points.map(p => `${p.x},${p.y}`).join(' ')}
-                fill="rgba(255, 107, 53, 0.08)" stroke="rgba(255, 107, 53, 0.6)" strokeWidth="1.5" />
-            {points.map((p, i) => (
-                <g key={i}>
-                    <circle cx={p.x} cy={p.y} r="4" fill="var(--accent)" opacity="0.9" />
-                    <circle cx={p.x} cy={p.y} r="6" fill="none" stroke="var(--accent)" strokeWidth="1" opacity="0.3">
-                        <animate attributeName="r" values="6;10;6" dur="3s" repeatCount="indefinite" begin={`${i * 0.4}s`} />
-                        <animate attributeName="opacity" values="0.3;0;0.3" dur="3s" repeatCount="indefinite" begin={`${i * 0.4}s`} />
-                    </circle>
-                    <text
-                        x={cx + (maxR + 25) * Math.cos(p.angle)}
-                        y={cy + (maxR + 25) * Math.sin(p.angle)}
-                        fill="var(--text-secondary)"
-                        fontSize="11"
-                        fontWeight="600"
-                        fontFamily="var(--font-mono)"
-                        textAnchor={p.angle > Math.PI / 2 || p.angle < -Math.PI / 2 ? 'end' : 'start'}
-                        dominantBaseline="middle"
-                    >{p.stat.axis}</text>
-                </g>
-            ))}
-        </svg>
+        <div className="radar-container" style={{ position: 'relative' }}>
+            <svg viewBox="0 0 540 540" className="radar-svg">
+                {/* Background Grids */}
+                {gridLevels.map((lvl) => (
+                    <polygon key={lvl}
+                        points={Array.from({ length: n }, (_, i) => {
+                            const a = (Math.PI * 2 * i) / n - Math.PI / 2
+                            return `${cx + maxR * lvl * Math.cos(a)},${cy + maxR * lvl * Math.sin(a)}`
+                        }).join(' ')}
+                        fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+                ))}
+
+                {/* Axis Lines */}
+                {points.map((p, i) => (
+                    <line key={i} x1={cx} y1={cy}
+                        x2={cx + maxR * Math.cos(p.angle)} y2={cy + maxR * Math.sin(p.angle)}
+                        stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+                ))}
+
+                {/* Data Polygon */}
+                <polygon points={points.map(p => `${p.x},${p.y}`).join(' ')}
+                    fill="rgba(255, 107, 53, 0.12)" stroke="rgba(255, 107, 53, 0.8)" strokeWidth="2" />
+
+                {/* Data Points + Pulsing */}
+                {points.map((p, i) => (
+                    <g key={i}>
+                        <circle cx={p.x} cy={p.y} r="4" fill="var(--accent)" />
+                        <circle cx={p.x} cy={p.y} r="6" fill="none" stroke="var(--accent)" strokeWidth="1" opacity="0.3">
+                            <animate attributeName="r" values="6;10;6" dur="3s" repeatCount="indefinite" begin={`${i * 0.4}s`} />
+                            <animate attributeName="opacity" values="0.3;0;0.3" dur="3s" repeatCount="indefinite" begin={`${i * 0.4}s`} />
+                        </circle>
+
+                        {/* Labels with improved positioning */}
+                        <text
+                            x={cx + (maxR + 32) * Math.cos(p.angle)}
+                            y={cy + (maxR + 32) * Math.sin(p.angle)}
+                            fill="var(--text)"
+                            fontSize="12"
+                            fontWeight="800"
+                            fontFamily="var(--font-mono)"
+                            textAnchor={
+                                Math.abs(p.angle + Math.PI / 2) < 0.1 ? 'middle' : // Top
+                                    Math.abs(p.angle - Math.PI / 2) < 0.1 ? 'middle' : // Bottom
+                                        p.angle > -Math.PI / 2 && p.angle < Math.PI / 2 ? 'start' : 'end' // Right vs Left
+                            }
+                            dominantBaseline="middle"
+                            style={{ textTransform: 'uppercase', letterSpacing: '1px' }}
+                        >
+                            {p.stat.axis}
+                        </text>
+                    </g>
+                ))}
+            </svg>
+
+            {/* A+ Achievement Badge */}
+            <div className="radar-badge">
+                <span className="badge-grade">A+</span>
+                <span className="badge-label">TIER 1 PRODUCT</span>
+            </div>
+        </div>
     )
 }
 
@@ -99,7 +123,11 @@ const Arsenal = () => {
                     { y: 40, scale: 0.95 },
                     {
                         y: 0, scale: 1, duration: 0.6, delay: i * 0.05, ease: 'back.out(1.4)',
-                        scrollTrigger: { trigger: card, start: 'top 90%' }
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 90%',
+                            toggleActions: 'play none none reverse'
+                        }
                     }
                 )
             })

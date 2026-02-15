@@ -13,16 +13,26 @@
 
 .signal__header-split {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1px 1fr;
     gap: clamp(40px, 6vw, 100px);
     align-items: center;
-    margin-bottom: clamp(60px, 10vh, 120px);
+    margin-bottom: clamp(40px, 6vh, 80px);
+    /* Reduced margin */
+    position: relative;
+}
+
+.signal__partition {
+    height: 100%;
+    width: 1px;
+    background: linear-gradient(180deg, transparent 0%, rgba(255, 107, 53, 0.4) 50%, transparent 100%);
+    opacity: 0.6;
 }
 
 .signal__header-left {
     display: flex;
     flex-direction: column;
-    gap: clamp(24px, 4vh, 40px);
+    gap: clamp(16px, 2vh, 24px);
+    /* Tighter gap */
 }
 
 .signal__heading {
@@ -61,6 +71,20 @@
     display: flex;
     justify-content: stretch;
     height: 100%;
+}
+
+.signal__project-frame {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    width: 100%;
+    transition: all 0.5s var(--ease-out-expo);
+}
+
+.signal__project-frame:hover {
+    background: rgba(255, 107, 53, 0.03);
+    border-color: rgba(255, 107, 53, 0.2);
 }
 
 .signal__side-project.side-project--large {
@@ -322,7 +346,8 @@
 }
 
 .signal__footer {
-    margin-top: clamp(80px, 15vh, 160px);
+    margin-top: clamp(40px, 8vh, 80px);
+    /* Reduced significantly */
     display: flex;
     flex-direction: column;
     align-items: center;

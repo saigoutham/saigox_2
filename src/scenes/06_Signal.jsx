@@ -22,6 +22,7 @@ const Signal = () => {
                 scrollTrigger: {
                     trigger: sectionRef.current,
                     start: 'top 65%',
+                    toggleActions: 'play none none reverse'
                 },
             })
         }, sectionRef)
@@ -44,8 +45,8 @@ const Signal = () => {
                     </p>
 
                     <a
-                        href="/Goutham_Vaddi_Resume.pdf"
-                        download
+                        href="/VENKATA SAI GOUTHAM VADDI_RESUME_3.pdf"
+                        download="Venkata_Sai_Goutham_Resume.pdf"
                         className="signal__resume-btn glass-card"
                     >
                         <Rocket size={16} />
@@ -53,25 +54,29 @@ const Signal = () => {
                     </a>
                 </div>
 
+                <div className="signal__partition" />
+
                 <div className="signal__header-right">
-                    <a
-                        href="https://fat-fingers.vercel.app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="signal__side-project glass-card side-project--large"
-                    >
-                        <div className="side-project__visual">
-                            <img src="/images/fat-fingers.png" alt="Fat Fingers Project Screenshot" className="side-project__screenshot" />
-                            <div className="side-project__overlay">
-                                <Rocket size={24} />
-                                <span className="overlay-text">VIEW PROJECT</span>
+                    <div className="signal__project-frame">
+                        <a
+                            href="https://fat-fingers.vercel.app"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="signal__side-project glass-card side-project--large"
+                        >
+                            <div className="side-project__visual">
+                                <img src="/images/fat-fingers.png" alt="Fat Fingers Project Screenshot" className="side-project__screenshot" />
+                                <div className="side-project__overlay">
+                                    <Rocket size={24} />
+                                    <span className="overlay-text">VIEW PROJECT</span>
+                                </div>
                             </div>
-                        </div>
-                        <div className="side-project__content">
-                            <div className="side-project__label">FEATURED SIDE PROJECT</div>
-                            <div className="side-project__name">Fat Fingers — Audio Visual Experience</div>
-                        </div>
-                    </a>
+                            <div className="side-project__content">
+                                <div className="side-project__label">FEATURED SIDE PROJECT</div>
+                                <div className="side-project__name">Fat Fingers — Audio Visual Experience</div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
 

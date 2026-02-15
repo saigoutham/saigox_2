@@ -29,7 +29,11 @@ const Gallery = () => {
         const ctx = gsap.context(() => {
             gsap.from(headerRef.current.children, {
                 y: 60, opacity: 0, duration: 1, stagger: 0.15, ease: 'power3.out',
-                scrollTrigger: { trigger: headerRef.current, start: 'top 75%' },
+                scrollTrigger: {
+                    trigger: headerRef.current,
+                    start: 'top 75%',
+                    toggleActions: 'play none none reverse'
+                },
             })
         }, sectionRef)
         return () => ctx.revert()
@@ -39,8 +43,20 @@ const Gallery = () => {
         if (!gridRef.current) return
         const items = gridRef.current.querySelectorAll('.gallery__item')
         gsap.fromTo(items,
-            { y: 60, opacity: 0, scale: 0.95 },
-            { y: 0, opacity: 1, scale: 1, duration: 0.6, stagger: 0.06, ease: 'power3.out' }
+            { clipPath: 'inset(100% 0% 0% 0%)', opacity: 0, scale: 1.1 },
+            {
+                clipPath: 'inset(0% 0% 0% 0%)',
+                opacity: 1,
+                scale: 1,
+                duration: 1.2,
+                stagger: 0.1,
+                ease: 'power4.out',
+                scrollTrigger: {
+                    trigger: gridRef.current,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                }
+            }
         )
     }, [activeFilter])
 
@@ -83,10 +99,6 @@ const Gallery = () => {
                             </p>
                         </div>
 
-                        <div className="gallery__counter glass-card">
-                            <span className="gallery__counter-num">{filteredPhotos.length}</span>
-                            <span className="gallery__counter-label">Photos</span>
-                        </div>
                     </div>
 
                     {/* Category filters */}
