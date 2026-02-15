@@ -39,6 +39,16 @@ const Signal = () => {
             >
                 Let's build<br />
                 <span className="accent-text">something</span>
+
+                <a
+                    href="https://fat-fingers.vercel.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="signal__side-project glass-card"
+                >
+                    <div className="side-project__label">SIDE PROJECT</div>
+                    <div className="side-project__name">Fat Fingers <Rocket size={12} className="rocket-icon" /></div>
+                </a>
             </h2>
 
             <div className="signal__grid">

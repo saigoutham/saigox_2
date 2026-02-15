@@ -15,6 +15,48 @@
     text-align: left;
     width: 100%;
     margin-bottom: clamp(40px, 6vh, 80px);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 24px;
+}
+
+.signal__side-project {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 12px 24px;
+    text-decoration: none;
+    margin-bottom: 8px;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    transition: all 0.4s var(--ease-out-expo);
+}
+
+.signal__side-project:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.1);
+}
+
+.side-project__label {
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+}
+
+.side-project__name {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rocket-icon {
+    color: var(--accent);
 }
 
 .signal__grid {

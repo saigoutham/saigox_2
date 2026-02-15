@@ -48,11 +48,21 @@ const Credentials = () => {
                         <div key={i} className="edu-card glass-card" style={{ '--card-accent': edu.accent }}>
                             {/* Hero badge — the main visual */}
                             <div className="edu-card__hero-badge">
-                                <CountUp
-                                    value={edu.badge}
-                                    prefix={edu.badge.includes('₹') ? '₹' : ''}
-                                    suffix={edu.badge.replace(/[\d.₹]/g, '')}
-                                />
+                                {edu.badge === 'TOP 1%' ? (
+                                    <>
+                                        <span style={{ fontSize: '0.4em', verticalAlign: 'middle', marginRight: '8px', opacity: 0.7 }}>TOP</span>
+                                        <CountUp value="1" suffix="%" />
+                                    </>
+                                ) : edu.badge === '9.27' ? (
+                                    <CountUp value="9.27" suffix=" CGPA" />
+                                ) : edu.badge === '995' ? (
+                                    <>
+                                        <span style={{ fontSize: '0.4em', verticalAlign: 'middle', marginRight: '8px', opacity: 0.7 }}>AIR</span>
+                                        <CountUp value="995" />
+                                    </>
+                                ) : (
+                                    <CountUp value={edu.badge} />
+                                )}
                             </div>
 
                             <h3 className="edu-card__school">{edu.school}</h3>

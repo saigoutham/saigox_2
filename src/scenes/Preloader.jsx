@@ -59,11 +59,12 @@ const Preloader = ({ onComplete }) => {
                 <svg viewBox="0 0 100 100" className="monogram-svg">
                     <circle cx="50" cy="50" r="48" fill="none" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
                     <path
-                        d="M70 30C70 20 30 20 30 50C30 80 70 80 70 70"
+                        d="M70 30C70 20 30 20 30 50C30 80 70 80 70 70L70 55L50 55"
                         fill="none"
                         stroke="var(--accent)"
                         strokeWidth="4"
                         strokeLinecap="round"
+                        strokeLinejoin="round"
                     />
                 </svg>
             </div>

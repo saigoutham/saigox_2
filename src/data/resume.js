@@ -87,7 +87,6 @@ export const experiences = [
         highlights: [
             'Own end-to-end monetization for live mobile titles generating $80M+ annually.',
             'Drive revenue strategy across IAP, D2C web stores, and LiveOps events.',
-            'Drive revenue strategy across IAP, D2C web stores, and LiveOps events.',
         ],
         metrics: [
             { val: '$80M+', label: 'ANNUAL REVENUE' },
@@ -104,7 +103,7 @@ export const education = [
         degree: 'MBA — IT Systems, Strategy & Operations',
         school: 'IIM Lucknow',
         period: '2021 — 2023',
-        badge: 'Top 1% Tier',
+        badge: 'TOP 1%',
         accent: '#84CC16',
         highlights: [
             "Dean's Merit List",
@@ -117,7 +116,7 @@ export const education = [
         degree: 'B.Tech — Computer Science (Honors)',
         school: 'NIT Trichy',
         period: '2015 — 2019',
-        badge: '9.27 CGPA',
+        badge: '9.27',
         accent: '#22D3EE',
         highlights: [
             'CGPA: 9.27 — Top of department',
@@ -129,7 +128,7 @@ export const education = [
         degree: 'JEE Main (2015)',
         school: 'National Level',
         period: '2015',
-        badge: 'JEE Main AIR 995',
+        badge: '995',
         accent: '#FFD700',
         highlights: [
             'AIR 995 / 12.34L+ candidates',
