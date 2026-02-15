@@ -36,7 +36,7 @@ const skillIcons = {
 
 /* ── Radar Chart ── */
 const RadarChart = ({ stats }) => {
-    const cx = 150, cy = 150, maxR = 110
+    const cx = 150, cy = 150, maxR = 120
     const n = stats.length
     const points = stats.map((s, i) => {
         const angle = (Math.PI * 2 * i) / n - Math.PI / 2
@@ -73,7 +73,7 @@ const RadarChart = ({ stats }) => {
                         x={cx + (maxR + 25) * Math.cos(p.angle)}
                         y={cy + (maxR + 25) * Math.sin(p.angle)}
                         fill="var(--text-secondary)"
-                        fontSize="10"
+                        fontSize="11"
                         fontWeight="600"
                         fontFamily="var(--font-mono)"
                         textAnchor={p.angle > Math.PI / 2 || p.angle < -Math.PI / 2 ? 'end' : 'start'}

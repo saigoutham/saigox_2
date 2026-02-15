@@ -73,7 +73,7 @@ const Identity = () => {
                     Product Manager at Scopely, ex-Visa Data Engineer, IIM Lucknow MBA.
                     I've scaled live games, built petabyte-scale data infrastructure, and
                     ran IIML's official merchandise store as CEO. When I'm not optimizing player segments,
-                    you'll find me in national parks with a Nikon.
+                    you'll find me in parks with a Nikon.
                 </p>
 
                 <div className="identity__stats reveal-item">
