@@ -4,6 +4,8 @@
 .signal {
     display: flex;
     flex-direction: column;
+    gap: clamp(40px, 6vh, 80px);
+    /* Enforce gap between header and grid */
     min-height: 100vh;
     padding: clamp(80px, 12vh, 140px) clamp(24px, 5vw, 80px);
     position: relative;
@@ -15,10 +17,12 @@
     display: grid;
     grid-template-columns: 1fr 1px 1fr;
     gap: clamp(40px, 6vw, 100px);
-    align-items: center;
-    margin-bottom: clamp(40px, 6vh, 80px);
-    /* Reduced margin */
+    align-items: start;
+    /* Fix overlap by removing center alignment */
+    margin-bottom: 0;
+    /* Handled by parent gap */
     position: relative;
+    width: 100%;
 }
 
 .signal__partition {
@@ -39,7 +43,10 @@
     text-align: left;
     width: 100%;
     margin-bottom: 0;
-    line-height: 0.95;
+    line-height: 0.9;
+    word-break: break-word;
+    /* Prevent overflow */
+    overflow-wrap: break-word;
 }
 
 .signal__resume-btn {

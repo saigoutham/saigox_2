@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import '../styles/Intro.css'
 import CountUp from '../components/CountUp'
+import MagneticButton from '../components/MagneticButton' // New component
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -104,13 +105,18 @@ const ParticleBackground = () => {
 const Intro = () => {
     const sectionRef = useRef(null)
     const nameRef = useRef(null)
-    const gridRef = useRef(null)
+
+    // Parallel Scroll & Velocity Skew
+    const { scrollY } = useScroll()
+    const velocity = useSpring(scrollY, { damping: 50, stiffness: 400 })
+    const skewX = useTransform(velocity, [0, 1000], [0, 5]) // Subtle skew on scroll
 
     useEffect(() => {
         const ctx = gsap.context(() => {
+            // Parallax the name block heavily
             gsap.to(nameRef.current, {
-                y: -100,
-                opacity: 0.3,
+                y: 200, // Move down faster than scroll
+                opacity: 0,
                 scrollTrigger: {
                     trigger: sectionRef.current,
                     start: 'top top',
@@ -124,7 +130,6 @@ const Intro = () => {
 
     const firstName = 'GOUTHAM'
 
-    // Single warm palette — stagger animation variety, not colors
     const charVariants = {
         hidden: { opacity: 0, y: 120, rotateX: 90, scale: 0.7 },
         visible: (i) => ({
@@ -140,40 +145,18 @@ const Intro = () => {
         }),
     }
 
-    useEffect(() => {
-        const handleMouseMove = (e) => {
-            const { clientX, clientY } = e
-            const { innerWidth, innerHeight } = window
-
-            // Calculate rotation values (-10 to 10 degrees)
-            const xRotation = ((clientY / innerHeight) - 0.5) * 20
-            const yRotation = ((clientX / innerWidth) - 0.5) * -20
-
-            // Apply tilt to name block
-            gsap.to(nameRef.current, {
-                rotateX: xRotation,
-                rotateY: yRotation,
-                duration: 0.8,
-                ease: 'power2.out',
-                overwrite: true
-            })
-        }
-
-        window.addEventListener('mousemove', handleMouseMove)
-        return () => window.removeEventListener('mousemove', handleMouseMove)
-    }, [])
-
     return (
         <section ref={sectionRef} className="scene intro" id="intro">
-            {/* Ambient glow — single warm color */}
             <div className="intro__ambient" />
-
-            {/* Particle canvas */}
             <div className="particle-canvas">
                 <ParticleBackground />
             </div>
 
-            <div ref={nameRef} className="intro__name-block">
+            <motion.div
+                ref={nameRef}
+                className="intro__name-block"
+                style={{ skewX }} // Applied velocity skew
+            >
                 {/* Decorative scanner line */}
                 <motion.div
                     className="intro__scanner"
@@ -191,7 +174,7 @@ const Intro = () => {
                             initial="hidden"
                             animate="visible"
                             variants={charVariants}
-                            style={{ '--char-index': i }}
+                            style={{ '--char-index': i, display: 'inline-block' }}
                         >
                             {char}
                             <span className="intro__char-glow" />
@@ -204,6 +187,7 @@ const Intro = () => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ display: 'inline-block' }}
                 >
                     VADDI
                 </motion.span>
@@ -256,17 +240,19 @@ const Intro = () => {
                         <span className="intro__stat-lbl">EXPERIENCE</span>
                     </div>
                 </motion.div>
-            </div>
+            </motion.div>
 
-            {/* Scroll indicator */}
+            {/* Magnetic CTA Wrapper */}
             <motion.div
                 className="intro__scroll-indicator"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 3.0, duration: 1 }}
             >
-                <span className="intro__scroll-text">SCROLL</span>
-                <span className="intro__scroll-line" />
+                <MagneticButton className="intro__scroll-trigger">
+                    <span className="intro__scroll-text">SCROLL</span>
+                    <span className="intro__scroll-line" />
+                </MagneticButton>
             </motion.div>
         </section>
     )
